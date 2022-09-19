@@ -6,12 +6,12 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:50 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/18 16:25:07 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/19 14:22:14 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-#include <stdio.h>
+
+#include "../inc/so_long.h"
 
 int	main(void)
 {

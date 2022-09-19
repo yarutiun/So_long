@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/18 16:13:36 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/19 14:33:08 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 # define SO_LONG_H
 # define ASSETS 64
 
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <stdbool.h>
 # include <stdlib.h>
-# include "get_next_line.h"
-# include <X11/keysym.h> //for key buttons
-# include "../libftprintf/inc/ft_printf.h"
-# include "../libftprintf/inc/libft.h"
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 # define WIDTH 900	// Width of the window (in pixels)
 # define HEIGHT 900	// Height of the window (in pixels)
 
@@ -75,6 +75,13 @@ enum {
 	X_CLOSE = 17,
 };
 
+char	*get_next_line(int fd);
+char	*read_to_nl_or_eof(int fd, char *line);
+char	*ft_strjoin(char *s1, char *s2);
+size_t	ft_strlcpy(char *dest, const char *src, size_t size);
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(char *str, int c);
+void	ft_putstr_fd(char *s, int fd);
 void x_y_of_map(char *map_adress, int *map_height, int *map_width);
 
 #endif

@@ -1,13 +1,15 @@
 NAME = so_long
-SRC = src/*.c \
-      get_next_line/*
-INC = inc
-CC = clang
-LIBPRINT = libftprintf
+SRC = src/main.c \
+	  src/errors.c \
+	  src/map_checker.c \
+	  src/map_to_matrix.c \
+	  src/utils.c \
+      src/get_next_line.c \
+	  src/get_next_line_utils.c \
 
 # -I[/path/to/header-files]
 # Add search path to header files (.h) or (.hpp).
-FLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit -I mlx -I $(INC) -I /usr/X11/include -I $(LIBPRINT) -I
+FLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o
 
 all: $(NAME)
 
@@ -16,14 +18,12 @@ all: $(NAME)
 
 $(NAME): 
 	$(MAKE) -C mlx/
-	$(MAKE) -C libftprintf/
-	$(CC) $(SRC) libftprintf/libftprintf.a $(FLAGS) $(NAME)
+	$(CC) $(SRC) $(FLAGS) $(NAME)
 
 clean:
-	$(RM) $(NAME)
+	$(RM) so_long
 	
 fclean: clean
 	$(MAKE) clean -C mlx/
-
+	
 re: fclean all
-#-Og -g3 -fsanitize=address for debugging

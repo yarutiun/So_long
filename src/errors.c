@@ -6,23 +6,24 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:52 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/19 00:18:38 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/19 14:27:50 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+
+#include "../inc/so_long.h"
 
 void if_correct_argc(int argc)
 {
     if (argc != 2)
     {
-        ft_printf("Sorry, wrong amount of arguments!");
+        ft_putstr_fd("Sorry, wrong amount of arguments!", 1);
             exit(EXIT_FAILURE);
     }
 }
 
 void print_error_msg(char *msg)
 {
-    ft_printf("%s", msg);
+    ft_putstr_fd(msg, 1);
     exit(EXIT_FAILURE);
 }

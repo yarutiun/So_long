@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 17:42:37 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/05/03 18:12:12 by yarutiun         ###   ########.fr       */
+/*   Created: 2022/09/19 13:42:51 by yarutiun          #+#    #+#             */
+/*   Updated: 2022/09/19 14:22:24 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+
+#include "../inc/so_long.h"
+
+void	ft_putstr_fd(char *s, int fd)
 {
-	if (c >= 97 && c <= 122)
-	{
-		c = c - 32;
-		return (c);
-	}
-	else
-	{
-		return (c);
-	}
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
 }
