@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/19 15:18:28 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/19 15:35:49 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void x_y_of_map(char *map_adress, int *map_height, int *map_width)
     }
     *map_height = 0;
     str = get_next_line(info.fd);
-    *map_width = (int)ft_strlen(str);
+    *map_width = (int)(ft_strlen(str) -1);
     while(1)
     {
         *map_height += 1;
@@ -43,10 +43,11 @@ void x_y_of_map(char *map_adress, int *map_height, int *map_width)
 // char **creat_matrix(char *map_path)
 // {
 //     t_data map;
-//     map.fd;                    //need to continue
-//     map.map_height;            //need to continue
-//     map.map_width;             //need to continue
-// } 
+
+//     map.fd = open(map_path, O_RDONLY);
+//     x_y_of_map(map_path, map.map_height, map.map_width);
+    
+// }
 
 void free_all_map(char **map)
 {
