@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:52 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/19 14:27:50 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:55:28 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void if_correct_argc(int argc)
     }
 }
 
-void print_error_msg(char *msg)
+int print_error_msg(char *msg)
 {
     ft_putstr_fd(msg, 1);
-    exit(EXIT_FAILURE);
+    return (0);
 }

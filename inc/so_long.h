@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 12:20:48 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:55:37 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_data
 	int		map_height;
 	int		counter;
 	int		counter2;
+	size_t 	len;
 }	t_data;
 
 typedef struct	s_image
@@ -86,7 +87,7 @@ char	*ft_strchr(char *str, int c);
 void	ft_putstr_fd(char *s, int fd);
 
 //errors
-void print_error_msg(char *msg);
+int print_error_msg(char *msg);
 void if_correct_argc(int argc);
 
 //working with map and converting it in char **
@@ -98,4 +99,6 @@ void free_all_map(char **map);
 int if_rectangle(char *map_path, char **map);
 int if_one_player(char *map_path, char **map);
 int if_collectible(char *map_path, char **map);
+int if_correct_symbols(char *map_path, char **map);
+int if_ber_file(char *map_path);
 #endif

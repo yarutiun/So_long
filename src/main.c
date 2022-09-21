@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:50 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 12:17:33 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:58:18 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ int	main(void)
         
     // }
     // mlx_loop(mlx);
-    t_data d;
-    char **matrix;
-    char *path = "maps/good_map.ber";
-    x_y_of_map(path, &d.map_height, &d.map_width);
-    matrix = create_matrix(path);
+//    t_data d;
+    // char **matrix;
+    char *path = "maps/good_map.be";
+    // x_y_of_map(path, &d.map_height, &d.map_width);
+    // matrix = create_matrix(path);
+    if_ber_file(path);
+    // if_correct_symbols(path, matrix);
     // if_rectangle(path, matrix);
     // if_one_player(path, matrix);
     // while(i < e)
