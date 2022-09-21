@@ -1,11 +1,11 @@
 NAME = so_long
 SRC = src/main.c \
-	  src/errors.c \
 	  src/map_validator.c \
 	  src/utils.c \
 	  src/map_check_correct.c \
       src/get_next_line.c \
 	  src/get_next_line_utils.c \
+	  src/render_game.c \
 
 # -I[/path/to/header-files]
 # Add search path to header files (.h) or (.hpp).

@@ -6,29 +6,30 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 15:21:33 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 16:49:39 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../inc/so_long.h"
 
-void mega_map_check( char **map, int argc, char **argv)
+void mega_map_check(t_mlx *mlx, int argc, char **argv)
 {
+    mlx->map = create_matrix(argv[1]);
     if ((!argv[0] || !argv[1]) && argc != 2)
     {
         print_error_msg("There are some missing arguments!");
     }
-    if_correct_symbols(argv[1], map);
+    if_correct_symbols(argv[1], mlx->map);
     if_ber_file(argv[1]);
-    if_collectible(argv[1], map);
-    if_one_player(argv[1], map);
-    if_rectangle(argv[1], map);
+    if_collectible(argv[1], mlx->map);
+    if_one_player(argv[1], mlx->map);
+    if_rectangle(argv[1], mlx->map);
 }
 
 void x_y_of_map(char *map_adress, int *map_height, int *map_width)
 {
-    t_data info;
+    t_mlx info;
     char *str;
     
     info.fd = open(map_adress, O_RDONLY);
@@ -55,7 +56,7 @@ void x_y_of_map(char *map_adress, int *map_height, int *map_width)
 
 char **create_matrix(char *map_path)
 {
-    t_data map;
+    t_mlx map;
     map.counter = 0;
     
     map.fd = open(map_path, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 15:21:50 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 16:50:48 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,10 @@
 // window size is going to be: x amount of elements in row * 100, y amount of elements in colomn * 100
 // if so, then texture size is going to be 100, 100
 
-typedef struct	s_program
- {
+typedef struct s_mlx
+{
 	void	*mlx_pointer;
 	void	*window;
-
-}				t_program;
-
-typedef struct s_data
-{
 	char	**map;
 	int		fd;
 	int		map_width;
@@ -43,7 +38,7 @@ typedef struct s_data
 	int		counter2;
 	size_t 	len;
 	int		current_score;
-}	t_data;
+}	t_mlx;
 
 typedef struct	s_image
 {
@@ -102,5 +97,5 @@ int if_one_player(char *map_path, char **map);
 int if_collectible(char *map_path, char **map);
 int if_correct_symbols(char *map_path, char **map);
 int if_ber_file(char *map_path);
-void mega_map_check( char **map, int argc, char **argv);
+void mega_map_check(t_mlx *mlx, int argc, char **argv);
 #endif

@@ -6,32 +6,30 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:50 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 13:18:52 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 16:52:13 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../inc/so_long.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-    // t_program mlx;
+    t_mlx	mlx_s;
+    if(argc && argv)
+    {
+        
+    }
+    // t_data map;
+    // // t_program mlx;
+    // mega_map_check(&map, argc, argv);
+    // data.map = create_matrix(argv[1]);
+    // x_y_of_map(argv[1], &data.map_height, &data.map_width);
+    mega_map_check(&mlx_s, argc, argv);
     // mlx.mlx_pointer = mlx_init();
-//    t_data d;
-    // char **matrix;
-    char *path = "maps/good_map.ber";
-    // x_y_of_map(path, &d.map_height, &d.map_width);
-    // matrix = create_matrix(path);
-    if_ber_file(path);
-    // if_correct_symbols(path, matrix);
-    // if_rectangle(path, matrix);
-    // if_one_player(path, matrix);
-    // while(i < e)
-    // {
-    //     printf("%c", matrix[d.map_height - 1][e]);
-    //     i ++;
-    // }
-    // printf("%i %i",d.map_height ,d.map_width);
+    // mlx.window = mlx_new_window(mlx.mlx_pointer, (data.map_width * 100), (data.map_height * 100), "So_long");
+    // printf("%i, %i", map.map_height, map.map_width);
+    printf("%s", mlx_s.map[0]);
     
     return 0;
 }

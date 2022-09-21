@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 13:28:39 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 16:50:27 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 //return 1 if success, 0 if not
 int if_rectangle(char *map_path, char **map)
 {
-    t_data d;
+    t_mlx d;
     d.counter = 0;
     int i = 0;
     
@@ -42,7 +42,7 @@ int if_rectangle(char *map_path, char **map)
 //return 1 if success, 0 if not
 int if_one_player(char *map_path, char **map)
 {
-    t_data d;
+    t_mlx d;
     int i = 0;
     x_y_of_map(map_path, &d.map_height, &d.map_width);
     while (map[i] < map[d.map_height])
@@ -58,12 +58,12 @@ int if_one_player(char *map_path, char **map)
 //return 1 if success, 0 if not
 int if_collectible(char *map_path, char **map)
 {
-    t_data d;
+    t_mlx d;
     int i = 0;
     x_y_of_map(map_path, &d.map_height, &d.map_width);
     while (map[i] < map[d.map_height])
     {
-        if(!ft_strchr(map[i], 'E'))
+        if((!ft_strchr(map[i], 'E')) && (!ft_strchr(map[i], 'C')))
         {
             free_all_map(map);
             print_error_msg("There are no collectibles on the map!");
@@ -74,7 +74,7 @@ int if_collectible(char *map_path, char **map)
 // if there are no more symbols in map but '1' '0' 'c' 'e' 'p' then return value is 1, if else - return value is 0
 int if_correct_symbols(char *map_path, char **map)
 {
-    t_data d;
+    t_mlx d;
     d.counter = 0;
     d.counter2 = 0;
 

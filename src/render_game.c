@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   render_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 13:42:51 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 15:37:34 by yarutiun         ###   ########.fr       */
+/*   Created: 2022/09/21 16:23:06 by yarutiun          #+#    #+#             */
+/*   Updated: 2022/09/21 16:30:34 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../inc/so_long.h"
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
-}
+// void create_win(t_program *mlx_s, t_data *data)
+// {
 
-int print_error_msg(char *msg)
-{
-    ft_putstr_fd(msg, 1);
-    return (0);
-}
+// }
