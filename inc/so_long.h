@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 12:55:37 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 15:21:50 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
-# define WIDTH 900	// Width of the window (in pixels)
-# define HEIGHT 900	// Height of the window (in pixels)
+// window size is going to be: x amount of elements in row * 100, y amount of elements in colomn * 100
+// if so, then texture size is going to be 100, 100
 
 typedef struct	s_program
  {
@@ -42,6 +42,7 @@ typedef struct s_data
 	int		counter;
 	int		counter2;
 	size_t 	len;
+	int		current_score;
 }	t_data;
 
 typedef struct	s_image
@@ -101,4 +102,5 @@ int if_one_player(char *map_path, char **map);
 int if_collectible(char *map_path, char **map);
 int if_correct_symbols(char *map_path, char **map);
 int if_ber_file(char *map_path);
+void mega_map_check( char **map, int argc, char **argv);
 #endif
