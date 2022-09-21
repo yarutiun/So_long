@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 17:10:50 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 21:43:14 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,22 @@
 # endif
 // window size is going to be: x amount of elements in row * 100, y amount of elements in colomn * 100
 // if so, then texture size is going to be 100, 100
+typedef struct t_tuple
+{
+	int row;
+	int col;
+}			t_tuple;
+
+typedef struct s_assets
+{
+	void *walls;
+	void *sprite;
+	void *collectible;
+	void *door;
+	void *enemie;
+	int  poz_x;
+	int  poz_y;
+} t_assets;
 
 typedef struct s_mlx
 {
@@ -40,27 +56,9 @@ typedef struct s_mlx
 	int		player_x_pos;
 	int 	playery_pos;
 	int		current_score;
+	t_assets	picures;
+	t_tuple		coordinates;
 }	t_mlx;
-
-typedef struct	s_image
-{
-	void      *pointer;
-	char      *pixels;
-	int       bits_per_pixel;
-	int       line_size;
-	int       endian;
-} t_image;
-
-typedef struct s_assets
-{
-	void *walls;
-	void *sprite;
-	void *collectible;
-	void *door;
-	void *enemie;
-	int  poz_x;
-	int  poz_y;
-} t_assets;
 
 enum {
 	DOWN = 125,
@@ -100,4 +98,7 @@ int if_collectible(char *map_path, char **map);
 int if_correct_symbols(char *map_path, char **map);
 int if_ber_file(char *map_path);
 int mega_map_check(t_mlx *mlx, int argc, char **argv);
+
+//rendering the map
+void	window_create_and_x_y(t_mlx *mlx_s, char *map_adress);
 #endif

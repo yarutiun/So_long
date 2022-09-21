@@ -17,13 +17,14 @@ all: $(NAME)
 	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): 
-	$(MAKE) -C mlx/
-	$(CC) $(SRC) $(FLAGS) $(NAME)
+	@$(MAKE) -C mlx/
+	@$(CC) $(SRC) $(FLAGS) $(NAME)
+	@echo "Everything compiled successfully"
 
 clean:
-	$(RM) so_long
+	@$(RM) so_long
 	
 fclean: clean
-	$(MAKE) clean -C mlx/
+	@$(MAKE) clean -C mlx/
 	
 re: fclean all

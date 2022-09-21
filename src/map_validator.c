@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 17:02:57 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 20:42:43 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int mega_map_check(t_mlx *mlx, int argc, char **argv)
     {
         print_error_msg("There are some missing arguments!");
     }
-    if(!if_correct_symbols(argv[1], mlx->map))
+    if(if_correct_symbols(argv[1], mlx->map))
         return (0);
-    if (!if_ber_file(argv[1]))
+    else if (!if_ber_file(argv[1]))
         return(0);
-    if(!if_collectible(argv[1], mlx->map))
+    else if(!if_collectible(argv[1], mlx->map))
         return (0);
-    if (!if_one_player(argv[1], mlx->map))
+    else if (!if_one_player(argv[1], mlx->map))
         return (0);
-    if (!if_rectangle(argv[1], mlx->map))
+    else if (!if_rectangle(argv[1], mlx->map))
         return (0);
     return (1);
 }
