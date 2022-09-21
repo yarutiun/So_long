@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/19 14:33:08 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:24:41 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct s_data
 	int		fd;
 	int		map_width;
 	int		map_height;
-	
+	int		counter;
+	int		counter2;
 }	t_data;
 
 typedef struct	s_image
@@ -75,6 +76,7 @@ enum {
 	X_CLOSE = 17,
 };
 
+//all the get_next_line functions
 char	*get_next_line(int fd);
 char	*read_to_nl_or_eof(int fd, char *line);
 char	*ft_strjoin(char *s1, char *s2);
@@ -82,6 +84,16 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(char *str, int c);
 void	ft_putstr_fd(char *s, int fd);
-void x_y_of_map(char *map_adress, int *map_height, int *map_width);
 
+//errors
+void print_error_msg(char *msg);
+void if_correct_argc(int argc);
+
+//working with map and converting it in char **
+void x_y_of_map(char *map_adress, int *map_height, int *map_width);
+char **create_matrix(char *map_path);
+void free_all_map(char **map);
+
+//validating the map
+int if_rectangle(char *map_path, char **map);
 #endif

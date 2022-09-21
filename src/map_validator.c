@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_checker.c                                      :+:      :+:    :+:   */
+/*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/19 15:35:49 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:54:05 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,31 @@ void x_y_of_map(char *map_adress, int *map_height, int *map_width)
     close (info.fd);
 }
 
-// char **creat_matrix(char *map_path)
-// {
-//     t_data map;
-
-//     map.fd = open(map_path, O_RDONLY);
-//     x_y_of_map(map_path, map.map_height, map.map_width);
+char **create_matrix(char *map_path)
+{
+    t_data map;
+    map.counter = 0;
     
-// }
+    map.fd = open(map_path, O_RDONLY);
+    x_y_of_map(map_path, &map.map_height, &map.map_width);
+    map.map = malloc(sizeof(char *) * map.map_height + 1);
+    if (!map.map)
+        exit(EXIT_FAILURE);
+    while(map.counter != map.map_height)
+    {
+        map.map[map.counter] = get_next_line(map.fd);
+        if (!map.map[map.counter])
+        {
+            free(map.map[map.counter]);
+            exit(EXIT_FAILURE);
+        }
+        // read(map.fd, map.map[map.counter], map.map_width + 1);
+        // map.map[map.counter][map.map_width + 1] = '\0';
+        map.counter ++;
+    }
+    map.map[map.counter] = NULL;
+    return(map.map);
+}
 
 void free_all_map(char **map)
 {

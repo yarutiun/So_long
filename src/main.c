@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:50 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/19 14:22:14 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:44:56 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,18 @@ int	main(void)
         
     // }
     // mlx_loop(mlx);
-    int a;
-    int b;
-    // a = malloc(sizeof(int) * 1000);
-    // b = malloc(sizeof(int) * 1000);
-    x_y_of_map("maps/good_map.ber", &a, &b);
-    printf("%i, %i", a, b);
+    t_data d;
+    char **matrix;
+    char *path = "maps/good_map.ber";
+    x_y_of_map(path, &d.map_height, &d.map_width);
+    matrix = create_matrix(path);
+    if_rectangle(path, matrix);
+    // while(i < e)
+    // {
+    //     printf("%c", matrix[d.map_height - 1][e]);
+    //     i ++;
+    // }
+    // printf("%i %i",d.map_height ,d.map_width);
+    
     return 0;
 }
