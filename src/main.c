@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:50 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/20 20:44:56 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:17:33 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	main(void)
     char *path = "maps/good_map.ber";
     x_y_of_map(path, &d.map_height, &d.map_width);
     matrix = create_matrix(path);
-    if_rectangle(path, matrix);
+    // if_rectangle(path, matrix);
+    // if_one_player(path, matrix);
     // while(i < e)
     // {
     //     printf("%c", matrix[d.map_height - 1][e]);

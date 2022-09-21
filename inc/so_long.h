@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/20 20:24:41 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 12:20:48 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,6 @@ void free_all_map(char **map);
 
 //validating the map
 int if_rectangle(char *map_path, char **map);
+int if_one_player(char *map_path, char **map);
+int if_collectible(char *map_path, char **map);
 #endif
