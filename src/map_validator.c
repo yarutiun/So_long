@@ -6,25 +6,31 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 16:49:39 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 17:02:57 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../inc/so_long.h"
-
-void mega_map_check(t_mlx *mlx, int argc, char **argv)
+//returns 0 if fail, 1 if success
+int mega_map_check(t_mlx *mlx, int argc, char **argv)
 {
     mlx->map = create_matrix(argv[1]);
     if ((!argv[0] || !argv[1]) && argc != 2)
     {
         print_error_msg("There are some missing arguments!");
     }
-    if_correct_symbols(argv[1], mlx->map);
-    if_ber_file(argv[1]);
-    if_collectible(argv[1], mlx->map);
-    if_one_player(argv[1], mlx->map);
-    if_rectangle(argv[1], mlx->map);
+    if(!if_correct_symbols(argv[1], mlx->map))
+        return (0);
+    if (!if_ber_file(argv[1]))
+        return(0);
+    if(!if_collectible(argv[1], mlx->map))
+        return (0);
+    if (!if_one_player(argv[1], mlx->map))
+        return (0);
+    if (!if_rectangle(argv[1], mlx->map))
+        return (0);
+    return (1);
 }
 
 void x_y_of_map(char *map_adress, int *map_height, int *map_width)

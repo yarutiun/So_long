@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 16:50:48 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/21 17:10:50 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_mlx
 	int		counter;
 	int		counter2;
 	size_t 	len;
+	int		player_x_pos;
+	int 	playery_pos;
 	int		current_score;
 }	t_mlx;
 
@@ -97,5 +99,5 @@ int if_one_player(char *map_path, char **map);
 int if_collectible(char *map_path, char **map);
 int if_correct_symbols(char *map_path, char **map);
 int if_ber_file(char *map_path);
-void mega_map_check(t_mlx *mlx, int argc, char **argv);
+int mega_map_check(t_mlx *mlx, int argc, char **argv);
 #endif
