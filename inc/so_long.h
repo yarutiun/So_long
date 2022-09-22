@@ -6,14 +6,12 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 21:43:14 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/22 14:35:10 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define ASSETS 64
-
 # include "../mlx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
@@ -34,10 +32,14 @@ typedef struct t_tuple
 typedef struct s_assets
 {
 	void *walls;
+	void *floor;
 	void *sprite;
 	void *collectible;
-	void *door;
+	void *portal_off;
+	void *portal_on;
 	void *enemie;
+	int		img_width;
+	int		img_height;
 	int  poz_x;
 	int  poz_y;
 } t_assets;
@@ -48,13 +50,17 @@ typedef struct s_mlx
 	void	*window;
 	char	**map;
 	int		fd;
+	int		row;
+	int		col;
 	int		map_width;
 	int		map_height;
 	int		counter;
 	int		counter2;
 	size_t 	len;
 	int		player_x_pos;
-	int 	playery_pos;
+	int 	player_y_pos;
+	int		sprite_width;
+	int		sprite_height;
 	int		current_score;
 	t_assets	picures;
 	t_tuple		coordinates;
@@ -100,5 +106,8 @@ int if_ber_file(char *map_path);
 int mega_map_check(t_mlx *mlx, int argc, char **argv);
 
 //rendering the map
-void	window_create_and_x_y(t_mlx *mlx_s, char *map_adress);
+void		window_create_and_x_y(t_mlx *mlx_s, char *map_adress);
+void 		render_map(t_mlx *mlx_s);
+t_assets	load_images(t_mlx *mlx_s);
+
 #endif
