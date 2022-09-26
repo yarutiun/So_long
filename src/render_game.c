@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:23:06 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/23 14:46:41 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/27 00:56:14 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,16 @@ void render_map(t_mlx *mlx_s)
         j = 0;
         ++i;    
     } 
+}
+
+void render_with_moves (t_mlx *mlx_s)
+{
+    static int moves_count;
+
+    moves_count ++;
+    render_map(mlx_s);
+    mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 20,
+		0x44FF0022, ft_itoa(moves_count));
 }
 
 void	window_create_and_x_y(t_mlx *mlx_s, char *map_adress)

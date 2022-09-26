@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/26 17:33:28 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/27 01:10:28 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ enum {
 	X_CLOSE = 17,
 };
 
-//all the get_next_line functions
+//all the get_next_line functions and utils
 char	*get_next_line(int fd);
 char	*read_to_nl_or_eof(int fd, char *line);
 char	*ft_strjoin(char *s1, char *s2);
@@ -87,6 +87,9 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(char *str, int c);
 void	ft_putstr_fd(char *s, int fd);
+char	*ft_itoa(int nb);
+char	*if_zero(char *s);
+int		len(long nb);
 
 //errors
 int print_error_msg(char *msg);
@@ -106,8 +109,10 @@ int if_ber_file(char *map_path);
 int mega_map_check(t_mlx *mlx, int argc, char **argv);
 
 //key handling
-void press_anything(int keycode, t_mlx *mlx_s);
+void 	press_anything(int keycode, t_mlx *mlx_s);
 void    find_player_pos(t_mlx *mlx_s);
+int		x_close(void);
+void	reset_player_pos(t_mlx *mlx_s, int *row, int *col);
 
 //rendering the map
 void		window_create_and_x_y(t_mlx *mlx_s, char *map_adress);
