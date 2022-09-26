@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:23:06 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/22 14:36:23 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/23 14:46:41 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ void render_map(t_mlx *mlx_s)
     int     j;
     int     x_cord;
     int     y_cord;
-    
+    // x_y_of_map( path, &(mlx_s->map_height), &(mlx_s->map_width));
 
     x_cord = 0;
     y_cord = 0;
     i = 0;
     j = 0;
-    while(mlx_s->map[i])
+    while(i < (mlx_s->map_height / 100))
     {
-        while(mlx_s->map[i][j])
+        while(j < (mlx_s->map_width / 100))
         {
             if (mlx_s->map[i][j] == '1')
                 img = mlx_s->picures.walls;
@@ -51,15 +51,15 @@ void render_map(t_mlx *mlx_s)
             else if(mlx_s->map[i][j] == 'E')
                 img = mlx_s->picures.portal_on;
             mlx_put_image_to_window(mlx_s->mlx_pointer, mlx_s->window, img, x_cord, y_cord );
-            j ++;
+            ++j;
             x_cord += 100;
         }
         y_cord += 100;
         x_cord = 0;
-        i ++;    
+        j = 0;
+        ++i;    
     } 
 }
-
 
 void	window_create_and_x_y(t_mlx *mlx_s, char *map_adress)
 {

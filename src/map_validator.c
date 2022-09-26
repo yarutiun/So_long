@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 20:42:43 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:57:20 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 int mega_map_check(t_mlx *mlx, int argc, char **argv)
 {
     mlx->map = create_matrix(argv[1]);
-    if ((!argv[0] || !argv[1]) && argc != 2)
+    if (argc != 2)
     {
         print_error_msg("There are some missing arguments!");
     }
-    if(if_correct_symbols(argv[1], mlx->map))
+    if(!if_correct_symbols(argv[1], mlx->map))
         return (0);
     else if (!if_ber_file(argv[1]))
         return(0);
@@ -69,7 +69,10 @@ char **create_matrix(char *map_path)
     x_y_of_map(map_path, &map.map_height, &map.map_width);
     map.map = malloc(sizeof(char *) * map.map_height + 1);
     if (!map.map)
+    {
+        free(map.map);    
         exit(EXIT_FAILURE);
+    }
     while(map.counter != map.map_height)
     {
         map.map[map.counter] = get_next_line(map.fd);

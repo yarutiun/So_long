@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/22 14:35:10 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/26 17:33:28 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ typedef struct t_tuple
 
 typedef struct s_assets
 {
-	void *walls;
-	void *floor;
-	void *sprite;
-	void *collectible;
-	void *portal_off;
-	void *portal_on;
-	void *enemie;
+	void 	*walls;
+	void 	*floor;
+	void 	*sprite;
+	void 	*collectible;
+	void 	*portal_off;
+	void 	*portal_on;
+	void 	*enemie;
 	int		img_width;
 	int		img_height;
-	int  poz_x;
-	int  poz_y;
+	int  	poz_x;
+	int  	poz_y;
 } t_assets;
 
 typedef struct s_mlx
@@ -104,6 +104,10 @@ int if_collectible(char *map_path, char **map);
 int if_correct_symbols(char *map_path, char **map);
 int if_ber_file(char *map_path);
 int mega_map_check(t_mlx *mlx, int argc, char **argv);
+
+//key handling
+void press_anything(int keycode, t_mlx *mlx_s);
+void    find_player_pos(t_mlx *mlx_s);
 
 //rendering the map
 void		window_create_and_x_y(t_mlx *mlx_s, char *map_adress);

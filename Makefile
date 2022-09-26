@@ -6,10 +6,11 @@ SRC = src/main.c \
       src/get_next_line.c \
 	  src/get_next_line_utils.c \
 	  src/render_game.c \
+	  src/key_handling.c \
 
 # -I[/path/to/header-files]
 # Add search path to header files (.h) or (.hpp).
-FLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o
+FLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit  -o 
 
 all: $(NAME)
 
@@ -28,3 +29,4 @@ fclean: clean
 	@$(MAKE) clean -C mlx/
 	
 re: fclean all
+# -Og -g3 -fsanitize=address

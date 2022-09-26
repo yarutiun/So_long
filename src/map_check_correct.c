@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/21 16:50:27 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/22 15:54:33 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int if_rectangle(char *map_path, char **map)
         if(map[0][i] != '1' && map[d.map_height - 1][i] != '1')
         {
             free_all_map(map);
-            print_error_msg("your map is not surrounded by walls");
+            return (0);
         }
         i++;
     }
@@ -33,7 +33,7 @@ int if_rectangle(char *map_path, char **map)
         if(map[d.counter][0] != '1' && map[d.counter][d.map_width - 1] != '1')
             {
                 free_all_map(map);
-                print_error_msg("your map is not surrounded by walls");
+                return (0);
             }
         d.counter ++;
     }
@@ -50,7 +50,7 @@ int if_one_player(char *map_path, char **map)
         if(!ft_strchr(map[i], 'P'))
         {
             free_all_map(map);
-            print_error_msg("there are no players on the map!");
+            return (0);
         }
     }
     return (1);
@@ -66,7 +66,7 @@ int if_collectible(char *map_path, char **map)
         if((!ft_strchr(map[i], 'E')) && (!ft_strchr(map[i], 'C')))
         {
             free_all_map(map);
-            print_error_msg("There are no collectibles on the map!");
+            return (0);
         }
     }
     return (1);
@@ -88,7 +88,7 @@ int if_correct_symbols(char *map_path, char **map)
              && map[d.counter][d.counter2] != 'P')
              {
                 free_all_map(map);
-                print_error_msg("there are forbidden characters on the map!");
+                return (0);
              }
             d.counter2 ++;
         }
@@ -96,7 +96,7 @@ int if_correct_symbols(char *map_path, char **map)
     }
     return (1);
 }
-
+//returns 1 if it is a ber file, 0 if not
 int if_ber_file(char *map_path)
 {
     int len;
@@ -104,8 +104,8 @@ int if_ber_file(char *map_path)
     
     len = ft_strlen(map_path);
     counter = (len - 4);
-    if (map_path[counter] != '.' && map_path[counter + 1] != 'b' && 
-        map_path[counter + 2] != 'e' && map_path[counter + 3] != 'r')
-            print_error_msg("This map is not in .ber format!");
+    if (map_path[counter] != '.' || map_path[counter + 1] != 'b' || 
+        map_path[counter + 2] != 'e' || map_path[counter + 3] != 'r')
+            return(0);
     return (1);
 }
