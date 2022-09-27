@@ -6,14 +6,14 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 11:45:52 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/27 01:10:46 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/27 02:08:23 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
 //just wrote that function to exit in the end of the game
-void press_anything(int keycode, t_mlx *mlx_s)
+int press_anything(int keycode, t_mlx *mlx_s)
 {
     if (keycode  || 0)
         exit(EXIT_SUCCESS);
@@ -27,18 +27,29 @@ int	x_close(void)
 	exit(EXIT_SUCCESS);
 }
 
+void	game_over(t_mlx *mlx_s)
+{	
+	render_map(mlx_s);
+	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 20, 0x44FF0022, "Game over");
+	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 40,
+		0x44FF0022, "Press any key to exit");
+	mlx_key_hook(mlx_s->window, press_anything, mlx_s);
+}
 
-// int     key_handler(int keycode, t_mlx *mlx_s)
-// {
-//     if (keycode == ESC)
-//         {
-//             mlx_destroy_window(mlx_s->mlx_pointer, mlx_s->window);
-//             free_all_map;
-//             exit(EXIT_SUCCESS);
-//         }
-//     if (keycode == )
-// }
-
+int	key_handler(int keycode, t_mlx *mlx_s, char *map_path)
+{
+	if (keycode == ESC)
+		press_anything(0, mlx_s);
+	else if (keycode == DOWN || keycode == S)
+		change_map(mlx_s, 1, 0, 'x', map_path);
+	else if (keycode == UP || keycode == W)
+		change_map(mlx_s, -1, 0, 'x', map_path);
+	else if (keycode == LEFT || keycode == A)
+		change_map(mlx_s, 0, -1, 'x', map_path);
+	else if (keycode == RIGHT || keycode == D)
+		change_map(mlx_s, 0, 1, 'x', map_path);
+	return (0);
+}
 //finds players current position and fills t_tuple struct with coordinates
 
 //just finds a current platers pos and fills the mlx struct with that info
@@ -65,7 +76,7 @@ void    find_player_pos(t_mlx *mlx_s)
         i++;
     }
 }
-
+//pushes a new player pos to arguments row and col (need to monitor moves)
 void	reset_player_pos(t_mlx *mlx_s, int *row, int *col)
 {
     find_player_pos(mlx_s);

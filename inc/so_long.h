@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/27 01:10:28 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/27 02:07:30 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,17 @@ int if_ber_file(char *map_path);
 int mega_map_check(t_mlx *mlx, int argc, char **argv);
 
 //key handling
-void 	press_anything(int keycode, t_mlx *mlx_s);
+int 	press_anything(int keycode, t_mlx *mlx_s);
 void    find_player_pos(t_mlx *mlx_s);
 int		x_close(void);
 void	reset_player_pos(t_mlx *mlx_s, int *row, int *col);
+void	game_over(t_mlx *mlx_s);
 
 //rendering the map
 void		window_create_and_x_y(t_mlx *mlx_s, char *map_adress);
 void 		render_map(t_mlx *mlx_s);
 t_assets	load_images(t_mlx *mlx_s);
+void	change_map(t_mlx *mlx_s, int row, int col, char new_square, char *map_path);
+int		key_handler(int keycode, t_mlx *mlx_s, char *map_path);
 
 #endif
