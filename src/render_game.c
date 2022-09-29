@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:23:06 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/27 02:05:15 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 00:59:55 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,17 @@ void	change_map(t_mlx *mlx_s, int row, int col, char new_square, char *map_path)
 	if (last_square == 'E')
 		was_e = true;
 	reset_player_pos(mlx_s, &row, &col);
-	new_square = mlx_s->map[row][col];
+	new_square = mlx_s->map[col][row];
 	if (new_square == '1')
 		return ;
 	if (new_square == 'E' && !(if_collectible(map_path, mlx_s->map)))
 	{
-		mlx_s->map[row][col] = 'P';
+		mlx_s->map[col][row] = 'P';
 		game_over(mlx_s);
 		return ;
 	}
-	last_square = mlx_s->map[row][col];
-	mlx_s->map[row][col] = 'P';
+	last_square = mlx_s->map[col][row];
+	mlx_s->map[col][row] = 'P';
 	if (was_e == false)
 		mlx_s->map[mlx_s->player_y_pos][mlx_s->player_x_pos] = '0';
 	else

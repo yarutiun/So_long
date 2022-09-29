@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/22 15:54:33 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 01:15:52 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ int if_collectible(char *map_path, char **map)
     x_y_of_map(map_path, &d.map_height, &d.map_width);
     while (map[i] < map[d.map_height])
     {
-        if((!ft_strchr(map[i], 'E')) && (!ft_strchr(map[i], 'C')))
+        if((!ft_strchr(map[i], 'E')) || (!ft_strchr(map[i], 'C')))
         {
             free_all_map(map);
             return (0);
         }
+        i++;
     }
     return (1);
 }

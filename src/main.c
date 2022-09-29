@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:50 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/27 02:09:56 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 01:09:39 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,6 @@ t_mlx	mlx_s;
          return (1);   
         }
     mlx_s.map = create_matrix(argv[1]);
-    if (argc)
-    {
-        
-    }
     x_y_of_map( argv[1], &(mlx_s.map_height), &(mlx_s.map_width));
     mlx_s.mlx_pointer = mlx_init();
     window_create_and_x_y(&mlx_s, argv[1]);

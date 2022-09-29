@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 11:45:52 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/27 02:08:23 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 01:05:19 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	key_handler(int keycode, t_mlx *mlx_s, char *map_path)
 	if (keycode == ESC)
 		press_anything(0, mlx_s);
 	else if (keycode == DOWN || keycode == S)
-		change_map(mlx_s, 1, 0, 'x', map_path);
-	else if (keycode == UP || keycode == W)
 		change_map(mlx_s, -1, 0, 'x', map_path);
+	else if (keycode == UP || keycode == W)
+		change_map(mlx_s, 1, 0, 'x', map_path);
 	else if (keycode == LEFT || keycode == A)
 		change_map(mlx_s, 0, -1, 'x', map_path);
 	else if (keycode == RIGHT || keycode == D)
@@ -66,8 +66,8 @@ void    find_player_pos(t_mlx *mlx_s)
         {
             if (mlx_s->map[i][j] == 'P')
             {
-                mlx_s->player_y_pos = i + 1;
-                mlx_s->player_x_pos = j + 1;
+                mlx_s->player_y_pos = i;
+                mlx_s->player_x_pos = j;
                 return ;
             }
             j++;
@@ -75,14 +75,15 @@ void    find_player_pos(t_mlx *mlx_s)
         j = 0;
         i++;
     }
+    i = 0;
 }
 //pushes a new player pos to arguments row and col (need to monitor moves)
 void	reset_player_pos(t_mlx *mlx_s, int *row, int *col)
 {
     find_player_pos(mlx_s);
-    *row = mlx_s->player_x_pos;
-    *col = mlx_s->player_y_pos;
+    *row += mlx_s->player_x_pos;
+    *col += mlx_s->player_y_pos;
     
-    mlx_s->player_y_pos = 0;
-    mlx_s->player_x_pos = 0;
+    // mlx_s->player_y_pos = 0;
+    // mlx_s->player_x_pos = 0;
 }
