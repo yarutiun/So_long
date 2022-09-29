@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 11:45:52 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/30 01:05:19 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 01:35:17 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int	key_handler(int keycode, t_mlx *mlx_s, char *map_path)
 	if (keycode == ESC)
 		press_anything(0, mlx_s);
 	else if (keycode == DOWN || keycode == S)
-		change_map(mlx_s, -1, 0, 'x', map_path);
-	else if (keycode == UP || keycode == W)
-		change_map(mlx_s, 1, 0, 'x', map_path);
-	else if (keycode == LEFT || keycode == A)
-		change_map(mlx_s, 0, -1, 'x', map_path);
-	else if (keycode == RIGHT || keycode == D)
 		change_map(mlx_s, 0, 1, 'x', map_path);
+	else if (keycode == UP || keycode == W)
+		change_map(mlx_s, 0, -1, 'x', map_path);
+	else if (keycode == LEFT || keycode == A)
+		change_map(mlx_s, -1, 0, 'x', map_path);
+	else if (keycode == RIGHT || keycode == D)
+		change_map(mlx_s, 1, 0, 'x', map_path);
 	return (0);
 }
 //finds players current position and fills t_tuple struct with coordinates

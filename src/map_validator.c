@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/22 15:57:20 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 01:31:22 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ int mega_map_check(t_mlx *mlx, int argc, char **argv)
     }
     if(!if_correct_symbols(argv[1], mlx->map))
         return (0);
-    else if (!if_ber_file(argv[1]))
+    if (!if_ber_file(argv[1]))
         return(0);
-    else if(!if_collectible(argv[1], mlx->map))
+    if(!if_collectible(argv[1], mlx->map))
         return (0);
-    else if (!if_one_player(argv[1], mlx->map))
+    if (!if_one_player(argv[1], mlx->map))
         return (0);
-    else if (!if_rectangle(argv[1], mlx->map))
+    if (!if_rectangle(argv[1], mlx->map))
         return (0);
     return (1);
 }

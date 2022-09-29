@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/30 01:15:52 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 01:18:52 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int if_one_player(char *map_path, char **map)
             free_all_map(map);
             return (0);
         }
+        i++;
     }
     return (1);
 }
