@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/27 02:07:30 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 23:36:26 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int if_one_player(char *map_path, char **map);
 int if_collectible(char *map_path, char **map);
 int if_correct_symbols(char *map_path, char **map);
 int if_ber_file(char *map_path);
+int if_exit(char *map_path, char **map);
 int mega_map_check(t_mlx *mlx, int argc, char **argv);
 
 //key handling

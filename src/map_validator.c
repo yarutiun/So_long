@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/30 01:31:22 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 23:42:50 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,29 @@ int mega_map_check(t_mlx *mlx, int argc, char **argv)
     if (argc != 2)
     {
         print_error_msg("There are some missing arguments!");
+        return (0);
     }
-    if(!if_correct_symbols(argv[1], mlx->map))
+    if(if_correct_symbols(argv[1], mlx->map) == 1)
+    {
+        print_error_msg("There are some incorrect characters on your map!");
         return (0);
-    if (!if_ber_file(argv[1]))
-        return(0);
-    if(!if_collectible(argv[1], mlx->map))
+    }
+    if (if_ber_file(argv[1]) == 1)
+    {
+        print_error_msg("Your file is not a .ber file!");
         return (0);
-    if (!if_one_player(argv[1], mlx->map))
+    }
+    if(if_collectible(argv[1], mlx->map) != 1 || if_exit(argv[1], mlx->map) != 1) //fix bug ther same way like here
+    {
+        print_error_msg("There are no collectibles or exits!");
         return (0);
-    if (!if_rectangle(argv[1], mlx->map))
+    }
+    if (if_one_player(argv[1], mlx->map) != 1)
+    {
+        print_error_msg("There is not only 1 player");
+        return (0);
+    }
+    if (if_rectangle(argv[1], mlx->map) == 1)
         return (0);
     return (1);
 }
@@ -40,10 +53,7 @@ void x_y_of_map(char *map_adress, int *map_height, int *map_width)
     
     info.fd = open(map_adress, O_RDONLY);
     if (info.fd < 0)
-    {
-       ft_putstr_fd("Something is wrong with your map! Can't open the file.", 1);
         exit(0);
-    }
     *map_height = 0;
     str = get_next_line(info.fd);
     *map_width = (int)(ft_strlen(str) -1);

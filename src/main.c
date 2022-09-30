@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:50 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/30 01:09:39 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 23:20:32 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	main(int argc, char **argv)
 {
 t_mlx	mlx_s;
 
-	if (mega_map_check(&mlx_s ,argc, argv) == 0)
-        {
-         print_error_msg("KHSDGFIHWKJSDBNFC");
-         return (1);   
-        }
     mlx_s.map = create_matrix(argv[1]);
     x_y_of_map( argv[1], &(mlx_s.map_height), &(mlx_s.map_width));
+    	if (mega_map_check(&mlx_s ,argc, argv) == 0)
+        {
+        //  print_error_msg("KHSDGFIHWKJSDBNFC");
+         return (1);   
+        }
     mlx_s.mlx_pointer = mlx_init();
     window_create_and_x_y(&mlx_s, argv[1]);
 	mlx_s.picures = load_images(&mlx_s);

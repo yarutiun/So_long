@@ -6,12 +6,12 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/30 01:18:52 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/09/30 23:42:30 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
-//return 1 if success, 0 if not
+//return 0 if success, 1 if not
 int if_rectangle(char *map_path, char **map)
 {
     t_mlx d;
@@ -33,28 +33,28 @@ int if_rectangle(char *map_path, char **map)
         if(map[d.counter][0] != '1' && map[d.counter][d.map_width - 1] != '1')
             {
                 free_all_map(map);
-                return (0);
+                return (1);
             }
         d.counter ++;
     }
-    return (1);
+    return (0);
 }
-//return 1 if success, 0 if not
+//return 0 if success, 1 if not
 int if_one_player(char *map_path, char **map)
 {
     t_mlx d;
     int i = 0;
     x_y_of_map(map_path, &d.map_height, &d.map_width);
-    while (map[i] < map[d.map_height])
+    while (map[i] != map[d.map_height])
     {
-        if(!ft_strchr(map[i], 'P'))
+        if(ft_strchr(map[i], 'P') != 0)
         {
-            free_all_map(map);
-            return (0);
+            return (1);
         }
         i++;
     }
-    return (1);
+    free_all_map(map);
+    return (0);
 }
 //return 1 if success, 0 if not
 int if_collectible(char *map_path, char **map)
@@ -62,18 +62,18 @@ int if_collectible(char *map_path, char **map)
     t_mlx d;
     int i = 0;
     x_y_of_map(map_path, &d.map_height, &d.map_width);
-    while (map[i] < map[d.map_height])
+    while (map[i] != map[d.map_height])
     {
-        if((!ft_strchr(map[i], 'E')) || (!ft_strchr(map[i], 'C')))
+        if(ft_strchr(map[i], 'C') != 0)
         {
-            free_all_map(map);
-            return (0);
+            return (1);
         }
         i++;
     }
-    return (1);
+    free_all_map(map);
+    return (0);
 }
-// if there are no more symbols in map but '1' '0' 'c' 'e' 'p' then return value is 1, if else - return value is 0
+// if there are no more symbols in map but '1' '0' 'c' 'e' 'p' then return value is 0, if else - return value is 1
 int if_correct_symbols(char *map_path, char **map)
 {
     t_mlx d;
@@ -85,20 +85,20 @@ int if_correct_symbols(char *map_path, char **map)
     {
         while (map[d.counter][d.counter2] != map[d.counter][d.map_width - 1])
         {
-            if (map[d.counter][d.counter2] != '1' && map[d.counter][d.counter2] != '0'
-             && map[d.counter][d.counter2] != 'C' && map[d.counter][d.counter2] != 'E'
-             && map[d.counter][d.counter2] != 'P')
+            if (map[d.counter][d.counter2] != '1' || map[d.counter][d.counter2] != '0'
+             || map[d.counter][d.counter2] != 'C' || map[d.counter][d.counter2] != 'E'
+             || map[d.counter][d.counter2] != 'P')
              {
                 free_all_map(map);
-                return (0);
+                return (1);
              }
             d.counter2 ++;
         }
         d.counter ++;
     }
-    return (1);
+    return (0);
 }
-//returns 1 if it is a ber file, 0 if not
+//returns 0 if it is a ber file, 1 if not
 int if_ber_file(char *map_path)
 {
     int len;
@@ -108,6 +108,23 @@ int if_ber_file(char *map_path)
     counter = (len - 4);
     if (map_path[counter] != '.' || map_path[counter + 1] != 'b' || 
         map_path[counter + 2] != 'e' || map_path[counter + 3] != 'r')
-            return(0);
-    return (1);
+            return(1);
+    return (0);
+}
+//returns 1 if there is an exit, 0 if no
+int if_exit(char *map_path, char **map)
+{
+    t_mlx d;
+    int i = 0;
+    x_y_of_map(map_path, &d.map_height, &d.map_width);
+    while (map[i] != map[d.map_height])
+    {
+        if(ft_strchr(map[i], 'E') != 0)
+        {
+            return (1);
+        }
+        i++;
+    }
+    free_all_map(map);
+    return (0);
 }
