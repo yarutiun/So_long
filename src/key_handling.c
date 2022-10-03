@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 11:45:52 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/30 01:35:17 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:12:44 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,25 @@ int	x_close(void)
 }
 
 void	game_over(t_mlx *mlx_s)
-{	
-	render_map(mlx_s);
+{
 	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 20, 0x44FF0022, "Game over");
 	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 40,
 		0x44FF0022, "Press any key to exit");
 	mlx_key_hook(mlx_s->window, press_anything, mlx_s);
 }
 
-int	key_handler(int keycode, t_mlx *mlx_s, char *map_path)
+int	key_handler(int keycode, t_mlx *mlx_s)
 {
 	if (keycode == ESC)
 		press_anything(0, mlx_s);
 	else if (keycode == DOWN || keycode == S)
-		change_map(mlx_s, 0, 1, 'x', map_path);
+		change_map(mlx_s, 0, 1, 'x');
 	else if (keycode == UP || keycode == W)
-		change_map(mlx_s, 0, -1, 'x', map_path);
+		change_map(mlx_s, 0, -1, 'x');
 	else if (keycode == LEFT || keycode == A)
-		change_map(mlx_s, -1, 0, 'x', map_path);
+		change_map(mlx_s, -1, 0, 'x');
 	else if (keycode == RIGHT || keycode == D)
-		change_map(mlx_s, 1, 0, 'x', map_path);
+		change_map(mlx_s, 1, 0, 'x');
 	return (0);
 }
 //finds players current position and fills t_tuple struct with coordinates

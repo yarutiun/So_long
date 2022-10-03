@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/30 23:42:30 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:53:01 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,26 @@ int if_one_player(char *map_path, char **map)
     return (0);
 }
 //return 1 if success, 0 if not
-int if_collectible(char *map_path, char **map)
+int	if_collectible(char **map)
 {
-    t_mlx d;
-    int i = 0;
-    x_y_of_map(map_path, &d.map_height, &d.map_width);
-    while (map[i] != map[d.map_height])
-    {
-        if(ft_strchr(map[i], 'C') != 0)
-        {
-            return (1);
-        }
-        i++;
-    }
-    free_all_map(map);
-    return (0);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
+
 // if there are no more symbols in map but '1' '0' 'c' 'e' 'p' then return value is 0, if else - return value is 1
 int if_correct_symbols(char *map_path, char **map)
 {

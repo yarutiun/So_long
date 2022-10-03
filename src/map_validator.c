@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/30 23:42:50 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:53:29 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int mega_map_check(t_mlx *mlx, int argc, char **argv)
         print_error_msg("Your file is not a .ber file!");
         return (0);
     }
-    if(if_collectible(argv[1], mlx->map) != 1 || if_exit(argv[1], mlx->map) != 1) //fix bug ther same way like here
+    if(if_collectible(mlx->map) != 1 || if_exit(argv[1], mlx->map) != 1) //fix bug ther same way like here
     {
         print_error_msg("There are no collectibles or exits!");
         return (0);

@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:23:06 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/30 01:27:36 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/03 15:41:37 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,12 @@ void	window_create_and_x_y(t_mlx *mlx_s, char *map_adress)
 			mlx_s->map_height, "So_long");
 }
 
-void	change_map(t_mlx *mlx_s, int row, int col, char new_square, char *map_path)
+void	change_map(t_mlx *mlx_s, int row, int col, char new_square)
 {
 	static char	last_square;
 	static bool	was_e = false;
+    static int beforex;
+    static int beforey;
 
 	if (last_square == 'E')
 		was_e = true;
@@ -95,10 +97,12 @@ void	change_map(t_mlx *mlx_s, int row, int col, char new_square, char *map_path)
 	new_square = mlx_s->map[col][row];
 	if (new_square == '1')
 		return ;
-	if (new_square == 'E' && !(if_collectible(map_path, mlx_s->map)))
+	if ((new_square == 'E') && (!if_collectible(mlx_s->map)))
 	{
+        mlx_s->map[beforey][beforex] = '0';
 		mlx_s->map[col][row] = 'P';
-		game_over(mlx_s);
+		render_map(mlx_s);
+        game_over(mlx_s);
 		return ;
 	}
 	last_square = mlx_s->map[col][row];
@@ -110,5 +114,7 @@ void	change_map(t_mlx *mlx_s, int row, int col, char new_square, char *map_path)
 		mlx_s->map[mlx_s->player_y_pos][mlx_s->player_x_pos] = 'E';
 		was_e = false;
 	}
+    beforex = (int)row;
+    beforey = (int)col;
 	render_with_moves(mlx_s);
 }

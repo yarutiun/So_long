@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/09/30 23:36:26 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:55:16 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void free_all_map(char **map);
 //validating the map
 int if_rectangle(char *map_path, char **map);
 int if_one_player(char *map_path, char **map);
-int if_collectible(char *map_path, char **map);
+int if_collectible(char **map);
 int if_correct_symbols(char *map_path, char **map);
 int if_ber_file(char *map_path);
 int if_exit(char *map_path, char **map);
@@ -120,7 +120,7 @@ void	game_over(t_mlx *mlx_s);
 void		window_create_and_x_y(t_mlx *mlx_s, char *map_adress);
 void 		render_map(t_mlx *mlx_s);
 t_assets	load_images(t_mlx *mlx_s);
-void	change_map(t_mlx *mlx_s, int row, int col, char new_square, char *map_path);
-int		key_handler(int keycode, t_mlx *mlx_s, char *map_path);
+void	change_map(t_mlx *mlx_s, int row, int col, char new_square);
+int		key_handler(int keycode, t_mlx *mlx_s);
 
 #endif
