@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 11:45:52 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/10 17:43:23 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/10 16:32:40 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ void	game_over(t_mlx *mlx_s)
 	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 20, 0x44FF0022, "Game over");
 	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 40,
 		0x44FF0022, "Press any key to exit");
+	mlx_key_hook(mlx_s->window, press_anything, mlx_s);
+}
+
+void	game_over_loss(t_mlx *mlx_s)
+{
+	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 20, 0x44FF0022, "Game over");
+	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 40,
+		0x44FF0022, "You died lol");
 	mlx_key_hook(mlx_s->window, press_anything, mlx_s);
 }
 
@@ -76,6 +84,32 @@ void    find_player_pos(t_mlx *mlx_s)
     }
     i = 0;
 }
+
+void    find_enemie_pos(t_mlx *mlx_s)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (mlx_s->map[i])
+    {
+        while(mlx_s->map[i][j])
+        {
+            if (mlx_s->map[i][j] == 'e')
+            {
+                mlx_s->enemie_y_pos = i;
+                mlx_s->enemie_x_pos = j;
+                return ;
+            }
+            j++;
+        }
+        j = 0;
+        i++;
+    }
+    i = 0;
+}
+
 //pushes a new player pos to arguments row and col (need to monitor moves)
 void	reset_player_pos(t_mlx *mlx_s, int *row, int *col)
 {

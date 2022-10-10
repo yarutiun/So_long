@@ -6,43 +6,45 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/10 17:40:44 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:35:33 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../inc/so_long.h"
 //returns 0 if fail, 1 if success
-int mega_map_check(int argc, char **argv, char **mlx_map)
+void mega_map_check(int argc, char **argv, char **mlx_map)
 {
     if (argc != 2)
     {
-        print_error_msg("There are some missing arguments!");
-        return (0);
+        ft_putstr_fd("There are some missing arguments!");
+        exit(EXIT_FAILURE);
     }
     if(if_correct_symbols(argv[1], mlx_map) == 1)
     {
-        print_error_msg("There are some incorrect characters on your map!");
-        return (0);
+        ft_putstr_fd("There are some incorrect characters on your map!");
+        exit(EXIT_FAILURE);
     }
-    if (if_ber_file(argv[1]) == 1)
+    if (if_ber_file(argv[1]) != 0)
     {
-        print_error_msg("Your file is not a .ber file!");
-        return (0);
+        write(1, "Your file is not a .ber file!", 30);
+        exit(EXIT_FAILURE);
     }
-    if(if_collectible(mlx_map) != 1 || if_exit(argv[1], mlx_map) != 1) //fix bug ther same way like here
+    if(if_collectible(mlx_map) != 1 || if_exit(argv[1], mlx_map) != 1)
     {
-        print_error_msg("There are no collectibles or exits!");
-        return (0);
+        ft_putstr_fd("There are no collectibles or exits!");
+        exit(EXIT_FAILURE);
     }
     if (if_one_player(argv[1], mlx_map) != 1)
     {
-        print_error_msg("There is not only 1 player");
-        return (0);
+        ft_putstr_fd("There is not only 1 player");
+        exit(EXIT_FAILURE);
     }
     if (if_rectangle(argv[1], mlx_map) == 1)
-        return (0);
-    return (1);
+    {
+        ft_putstr_fd("not a rectangle");
+        exit(EXIT_FAILURE);
+    }
 }
 
 void x_y_of_map(char *map_adress, int *map_height, int *map_width)
@@ -107,4 +109,3 @@ void free_all_map(char **map)
     }
     free(map);
 }
-

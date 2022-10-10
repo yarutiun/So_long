@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/10 17:39:55 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/10 19:46:29 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,21 @@ typedef struct s_mlx
 	void	*mlx_pointer;
 	void	*window;
 	char	**map;
+	char	**map_cpy;
 	int		fd;
 	int		row;
 	int		col;
 	int		map_width;
 	int		map_height;
+	int		elements_count;
+	int		elements_counted;
 	int		counter;
 	int		counter2;
 	size_t 	len;
 	int		player_x_pos;
 	int 	player_y_pos;
+	int		enemie_x_pos;
+	int 	enemie_y_pos;
 	int		sprite_width;
 	int		sprite_height;
 	int		current_score;
@@ -86,7 +91,7 @@ char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(char *str, int c);
-void	ft_putstr_fd(char *s, int fd);
+void	ft_putstr_fd(char *s);
 char	*ft_itoa(int nb);
 char	*if_zero(char *s);
 int		len(long nb);
@@ -107,8 +112,8 @@ int if_collectible(char **map);
 int if_correct_symbols(char *map_path, char **map);
 int if_ber_file(char *map_path);
 int if_exit(char *map_path, char **map);
-int mega_map_check(int argc, char **argv, char ** mlx_map);
-
+void mega_map_check(int argc, char **argv, char **map);
+void game_over_loss(t_mlx *mlx_s);
 //key handling
 int 	press_anything(int keycode, t_mlx *mlx_s);
 void    find_player_pos(t_mlx *mlx_s);

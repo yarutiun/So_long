@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:23:06 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/10 17:44:56 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/10 19:59:33 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ t_assets	load_images(t_mlx *mlx_s)
     picture.floor = mlx_xpm_file_to_image(mlx_s->mlx_pointer, "images/floor.xpm", &mlx_s->sprite_width , &mlx_s->sprite_height );
     picture.portal_on = mlx_xpm_file_to_image(mlx_s->mlx_pointer, "images/portal_on100.xpm", &mlx_s->sprite_width , &mlx_s->sprite_height);
     picture.sprite = mlx_xpm_file_to_image(mlx_s->mlx_pointer,"images/doomslayer100.xpm" , &mlx_s->sprite_width , &mlx_s->sprite_height);
-    picture.collectible = mlx_xpm_file_to_image(mlx_s->mlx_pointer, "images/chainsaw100.xpm", &mlx_s->sprite_width , &mlx_s->sprite_height); 
+    picture.collectible = mlx_xpm_file_to_image(mlx_s->mlx_pointer, "images/chainsaw100.xpm", &mlx_s->sprite_width , &mlx_s->sprite_height);
+    picture.enemie = mlx_xpm_file_to_image(mlx_s->mlx_pointer, "images/enemie.xpm", &mlx_s->sprite_width, &mlx_s->sprite_height);
     return (picture);
 }
 
@@ -50,6 +51,8 @@ void render_map(t_mlx *mlx_s)
                 img = mlx_s->picures.sprite;
             else if(mlx_s->map[i][j] == 'E')
                 img = mlx_s->picures.portal_on;
+            else if(mlx_s->map[i][j] == 'e')
+                img = mlx_s->picures.enemie;
             mlx_put_image_to_window(mlx_s->mlx_pointer, mlx_s->window, img, x_cord, y_cord );
             ++j;
             x_cord += 100;
@@ -90,6 +93,7 @@ void	change_map(t_mlx *mlx_s, int row, int col, char new_square)
 	static char	last_square;
 	static bool	was_e = false;
     static int beforex;
+    // static bool made_step = true;
     static int beforey;
 
 	if (last_square == 'E')
@@ -98,6 +102,14 @@ void	change_map(t_mlx *mlx_s, int row, int col, char new_square)
 	new_square = mlx_s->map[col][row];
 	if (new_square == '1')
 		return ;
+    if (new_square == 'e')
+    {
+        mlx_s->map[beforey][beforex] = '0';
+		mlx_s->map[col][row] = 'P';
+        render_map(mlx_s);
+        game_over_loss(mlx_s);
+		return ;
+    }
 	if ((new_square == 'E') && (!if_collectible(mlx_s->map)))
 	{
         mlx_s->map[beforey][beforex] = '0';
@@ -117,5 +129,5 @@ void	change_map(t_mlx *mlx_s, int row, int col, char new_square)
 	}
     beforex = (int)row;
     beforey = (int)col;
-	render_with_moves(mlx_s);
+    render_with_moves(mlx_s);
 }

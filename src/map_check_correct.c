@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/09 14:54:16 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/10 20:07:36 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ int if_rectangle(char *map_path, char **map)
     x_y_of_map(map_path, &d.map_height, &d.map_width);
     while(i < d.map_width)
     {
-        if(map[0][i] != '1' && map[d.map_height - 1][i] != '1')
+        if(map[0][i] != '1' || map[d.map_height - 1][i] != '1')
         {
             free_all_map(map);
-            return (0);
+            return (1);
         }
         i++;
     }
     while(d.counter < d.map_height)
     {
-        if(map[d.counter][0] != '1' && map[d.counter][d.map_width - 1] != '1')
+        if(map[d.counter][0] != '1' || map[d.counter][d.map_width - 1] != '1')
             {
                 free_all_map(map);
                 return (1);
@@ -74,7 +74,6 @@ int	if_collectible(char **map)
 		}
 		i++;
 	}
-    free_all_map(map);
 	return (0);
 }
 
@@ -92,7 +91,7 @@ int if_correct_symbols(char *map_path, char **map)
         {
             if (map[d.counter][d.counter2] != '1' || map[d.counter][d.counter2] != '0'
              || map[d.counter][d.counter2] != 'C' || map[d.counter][d.counter2] != 'E'
-             || map[d.counter][d.counter2] != 'P')
+             || map[d.counter][d.counter2] != 'P' || map[d.counter][d.counter2] != 'e')
              {
                 free_all_map(map);
                 return (1);
