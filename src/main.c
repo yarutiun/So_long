@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:50 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/03 15:29:38 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:42:56 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ t_mlx	mlx_s;
 
     mlx_s.map = create_matrix(argv[1]);
     x_y_of_map( argv[1], &(mlx_s.map_height), &(mlx_s.map_width));
-    	if (mega_map_check(&mlx_s ,argc, argv) != 1)
-        	return (1);
-    mlx_s.mlx_pointer = mlx_init();
+    	if (mega_map_check(argc, argv, mlx_s.map) != 1)
+		{
+        	free_all_map(mlx_s.map);
+			return (1);
+		}	
+	mlx_s.mlx_pointer = mlx_init();
     window_create_and_x_y(&mlx_s, argv[1]);
 	mlx_s.picures = load_images(&mlx_s);
     find_player_pos(&mlx_s);
@@ -29,5 +32,6 @@ t_mlx	mlx_s;
 	mlx_key_hook(mlx_s.window, key_handler, &mlx_s);
 	mlx_hook(mlx_s.window, X_CLOSE, 0, x_close, 0);
 	mlx_loop(mlx_s.mlx_pointer);
+	free_all_map(mlx_s.map);
 	return (0);
 }

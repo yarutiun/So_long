@@ -6,22 +6,21 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/03 14:53:29 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:40:44 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../inc/so_long.h"
 //returns 0 if fail, 1 if success
-int mega_map_check(t_mlx *mlx, int argc, char **argv)
+int mega_map_check(int argc, char **argv, char **mlx_map)
 {
-    mlx->map = create_matrix(argv[1]);
     if (argc != 2)
     {
         print_error_msg("There are some missing arguments!");
         return (0);
     }
-    if(if_correct_symbols(argv[1], mlx->map) == 1)
+    if(if_correct_symbols(argv[1], mlx_map) == 1)
     {
         print_error_msg("There are some incorrect characters on your map!");
         return (0);
@@ -31,17 +30,17 @@ int mega_map_check(t_mlx *mlx, int argc, char **argv)
         print_error_msg("Your file is not a .ber file!");
         return (0);
     }
-    if(if_collectible(mlx->map) != 1 || if_exit(argv[1], mlx->map) != 1) //fix bug ther same way like here
+    if(if_collectible(mlx_map) != 1 || if_exit(argv[1], mlx_map) != 1) //fix bug ther same way like here
     {
         print_error_msg("There are no collectibles or exits!");
         return (0);
     }
-    if (if_one_player(argv[1], mlx->map) != 1)
+    if (if_one_player(argv[1], mlx_map) != 1)
     {
         print_error_msg("There is not only 1 player");
         return (0);
     }
-    if (if_rectangle(argv[1], mlx->map) == 1)
+    if (if_rectangle(argv[1], mlx_map) == 1)
         return (0);
     return (1);
 }
@@ -60,12 +59,12 @@ void x_y_of_map(char *map_adress, int *map_height, int *map_width)
     while(1)
     {
         *map_height += 1;
+        free(str);
         str = get_next_line(info.fd);
         if(str == NULL)
         {
             break;
         }
-        free(str);
     }
     close (info.fd);
 }
@@ -108,3 +107,4 @@ void free_all_map(char **map)
     }
     free(map);
 }
+

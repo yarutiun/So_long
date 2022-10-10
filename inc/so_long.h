@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/03 14:55:16 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:39:55 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int if_collectible(char **map);
 int if_correct_symbols(char *map_path, char **map);
 int if_ber_file(char *map_path);
 int if_exit(char *map_path, char **map);
-int mega_map_check(t_mlx *mlx, int argc, char **argv);
+int mega_map_check(int argc, char **argv, char ** mlx_map);
 
 //key handling
 int 	press_anything(int keycode, t_mlx *mlx_s);

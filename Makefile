@@ -10,6 +10,7 @@ SRC = src/main.c \
 
 # -I[/path/to/header-files]
 # Add search path to header files (.h) or (.hpp).
+#leaks -atExit -- ./so_long maps/wrong_map.ber
 FLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit  -o
 
 all: $(NAME)

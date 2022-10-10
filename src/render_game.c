@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:23:06 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/03 15:41:37 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/10 17:44:56 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,12 @@ void render_map(t_mlx *mlx_s)
 void render_with_moves (t_mlx *mlx_s)
 {
     static int moves_count;
-
+    char *str = ft_itoa(moves_count);
     moves_count ++;
     render_map(mlx_s);
     mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 20,
-		0x44FF0022, ft_itoa(moves_count));
+		0x44FF0022, str);
+    free(str);
 }
 
 void	window_create_and_x_y(t_mlx *mlx_s, char *map_adress)
