@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/10 20:07:36 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/12 23:15:49 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,28 @@ int if_correct_symbols(char *map_path, char **map)
     }
     return (0);
 }
+int count(char **map)
+{
+    int i = 0;
+    int count = 0;
+    // x_y_of_map(map_path, &d.map_height, &d.map_width);
+    // printf("%i, %i", d.map_width, d.map_height);
+    while (map[i])
+    {
+        int j = 0;
+        while (map[i][j])
+        {
+            // printf("%c\n", map[i][j]);
+            if ((map[i][j] == 'C') || (map[i][j] == 'E'))
+            {   
+                count ++;
+            }
+            j++;
+        }
+        i++;
+    }
+    return (count);
+}
 //returns 0 if it is a ber file, 1 if not
 int if_ber_file(char *map_path)
 {
@@ -121,7 +143,7 @@ int if_exit(char *map_path, char **map)
     t_mlx d;
     int i = 0;
     x_y_of_map(map_path, &d.map_height, &d.map_width);
-    while (map[i] != map[d.map_height])
+    while (map[i] != map[d.map_height - 1])
     {
         if(ft_strchr(map[i], 'E') != 0)
         {

@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 11:45:52 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/10 16:32:40 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/12 23:30:24 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,31 @@ int	key_handler(int keycode, t_mlx *mlx_s)
 //finds players current position and fills t_tuple struct with coordinates
 
 //just finds a current platers pos and fills the mlx struct with that info
+void    find_player_pos_cpy(t_mlx *mlx_s)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (mlx_s->map_cpy[i])
+    {
+        while(mlx_s->map_cpy[i][j])
+        {
+            if (mlx_s->map_cpy[i][j] == 'P')
+            {
+                mlx_s->player_y_pos = i;
+                mlx_s->player_x_pos = j;
+                return ;
+            }
+            j++;
+        }
+        j = 0;
+        i++;
+    }
+    i = 0;
+}
+
 void    find_player_pos(t_mlx *mlx_s)
 {
     int i;

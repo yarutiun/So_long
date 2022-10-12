@@ -9,7 +9,7 @@ SRC = src/main.c \
 	  src/key_handling.c \
 
 #leaks -atExit -- ./so_long maps/wrong_map.ber
-FLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit  -o
+FLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o
 
 all: $(NAME)
 

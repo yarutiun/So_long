@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/10 20:35:33 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:19:57 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,33 @@ char **create_matrix(char *map_path)
     }
     map.map[map.counter] = NULL;
     return(map.map);
+}
+
+char **create_matrix2(char *map_path)
+{
+    t_mlx map2;
+    map2.counter = 0;
+    
+    map2.fd = open(map_path, O_RDONLY);
+    x_y_of_map(map_path, &map2.map_height, &map2.map_width);
+    map2.map_cpy = malloc(sizeof(char *) * map2.map_height + 1);
+    if (!map2.map)
+    {
+        free(map2.map);    
+        exit(EXIT_FAILURE);
+    }
+    while(map2.counter != map2.map_height)
+    {
+        map2.map_cpy[map2.counter] = get_next_line(map2.fd);
+        if (!map2.map_cpy[map2.counter])
+        {
+            free(map2.map_cpy[map2.counter]);
+            exit(EXIT_FAILURE);
+        }
+        map2.counter ++;
+    }
+    map2.map_cpy[map2.counter] = NULL;
+    return(map2.map_cpy);
 }
 
 void free_all_map(char **map)

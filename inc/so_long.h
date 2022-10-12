@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/10 19:46:29 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/12 23:29:00 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_mlx
 	int		fd;
 	int		row;
 	int		col;
+	int		dlina;
+	int		shirina;
 	int		map_width;
 	int		map_height;
 	int		elements_count;
@@ -116,10 +118,19 @@ void mega_map_check(int argc, char **argv, char **map);
 void game_over_loss(t_mlx *mlx_s);
 //key handling
 int 	press_anything(int keycode, t_mlx *mlx_s);
+void    find_player_pos_cpy(t_mlx *mlx_s);
 void    find_player_pos(t_mlx *mlx_s);
 int		x_close(void);
 void	reset_player_pos(t_mlx *mlx_s, int *row, int *col);
 void	game_over(t_mlx *mlx_s);
+int count(char **map);
+void counting_reachable(t_mlx *mlx_s, int x, int y, char **map_cpy, int *a);
+int	has_valid_path(t_mlx *mlx_s, char **map_cpy);
+char **create_matrix2(char *map_path);
+// void make_map_size(t_mlx *mlx_s, char *adress);
+int    find_player_pos_y(t_mlx *mlx_s);
+int    find_player_pos_x(t_mlx *mlx_s);
+void make_map_size(t_mlx *mlx_s, char *adress);
 
 //rendering the map
 void		window_create_and_x_y(t_mlx *mlx_s, char *map_adress);
