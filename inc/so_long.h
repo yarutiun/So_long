@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/13 13:26:58 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 20:39:59 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ typedef struct s_mlx
 	int			col;
 	int			dlina;
 	int			shirina;
+	int			beforex;
+	int			beforey;
+	bool		was_e;
+	char		last_square;
 	int			map_width;
 	int			map_height;
 	int			elements_count;
@@ -99,6 +103,8 @@ char		*ft_itoa(int nb);
 char		*if_zero(char *s);
 int			len(long nb);
 char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
+void		*put_img(t_mlx *mlx_s, int i, int j);
+void		initialize(t_mlx *mlx_s);
 
 //errors
 int			print_error_msg(char *msg);
@@ -113,15 +119,20 @@ void		free_all_map(char **map);
 int			if_rectangle(char *map_path, char **map);
 int			if_one_player(char *map_path, char **map);
 int			if_collectible(char **map);
-int			if_correct_symbols(char *map_path, char **map);
+int			if_correct_symbols(char **map);
 int			if_ber_file(char *map_path);
+void		check_collect(bool was_e, t_mlx *mlx_s);
 int			if_exit(char *map_path, char **map);
 void		mega_map_check(int argc, char **argv, char **map);
 void		game_over_loss(t_mlx *mlx_s);
+void		smth(t_mlx *mlx_s);
+void		smth2(t_mlx *mlx_s);
+void	if_last_is_e(char i, t_mlx *mlx_s);
 //key handling
 int			press_anything(int keycode, t_mlx *mlx_s);
 void		find_player_pos_cpy(t_mlx *mlx_s);
 void		find_player_pos(t_mlx *mlx_s);
+void		push_to_img(t_mlx *mlx_s, int i, int j, void *img);
 int			x_close(void);
 void		reset_player_pos(t_mlx *mlx_s, int *row, int *col);
 void		game_over(t_mlx *mlx_s);
@@ -131,7 +142,7 @@ int			has_valid_path(t_mlx *mlx_s);
 char		**create_matrix2(char *map_path);
 int			find_player_pos_y(t_mlx *mlx_s);
 int			find_player_pos_x(t_mlx *mlx_s);
-void		make_map_size(t_mlx *mlx_s, char *adress);
+void		make_map_size(t_mlx *mlx_s, char *adress, char **map_cpy);
 void		map_cpy_to_struct(t_mlx *mlx_s, char **map_cpy);
 //rendering the map
 void		window_create_and_x_y(t_mlx *mlx_s, char *map_adress);

@@ -7,6 +7,9 @@ SRC = src/main.c \
 	  src/get_next_line_utils.c \
 	  src/render_game.c \
 	  src/key_handling.c \
+	  src/another_file_for_norm.c \
+	  src/another_function_for_norm2.c \
+	  src/small_things.c \
 
 #leaks -atExit -- ./so_long maps/wrong_map.ber
 FLAGS = -Wall -Wextra -Werror -Iincludes -g -Lmlx -lmlx -framework OpenGL -framework AppKit -o

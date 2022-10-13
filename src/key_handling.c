@@ -6,43 +6,13 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 11:45:52 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/12 23:30:24 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 20:42:25 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
 //just wrote that function to exit in the end of the game
-int press_anything(int keycode, t_mlx *mlx_s)
-{
-    if (keycode  || 0)
-        exit(EXIT_SUCCESS);
-        mlx_destroy_window(mlx_s->mlx_pointer, mlx_s->window);
-        free_all_map(mlx_s->map);
-        exit(EXIT_SUCCESS);
-}
-
-int	x_close(void)
-{
-	exit(EXIT_SUCCESS);
-}
-
-void	game_over(t_mlx *mlx_s)
-{
-	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 20, 0x44FF0022, "Game over");
-	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 40,
-		0x44FF0022, "Press any key to exit");
-	mlx_key_hook(mlx_s->window, press_anything, mlx_s);
-}
-
-void	game_over_loss(t_mlx *mlx_s)
-{
-	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 20, 0x44FF0022, "Game over");
-	mlx_string_put(mlx_s->mlx_pointer, mlx_s->window, 20, 40,
-		0x44FF0022, "You died lol");
-	mlx_key_hook(mlx_s->window, press_anything, mlx_s);
-}
-
 int	key_handler(int keycode, t_mlx *mlx_s)
 {
 	if (keycode == ESC)
@@ -60,88 +30,85 @@ int	key_handler(int keycode, t_mlx *mlx_s)
 //finds players current position and fills t_tuple struct with coordinates
 
 //just finds a current platers pos and fills the mlx struct with that info
-void    find_player_pos_cpy(t_mlx *mlx_s)
+void	find_player_pos_cpy(t_mlx *mlx_s)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    while (mlx_s->map_cpy[i])
-    {
-        while(mlx_s->map_cpy[i][j])
-        {
-            if (mlx_s->map_cpy[i][j] == 'P')
-            {
-                mlx_s->player_y_pos = i;
-                mlx_s->player_x_pos = j;
-                return ;
-            }
-            j++;
-        }
-        j = 0;
-        i++;
-    }
-    i = 0;
+	i = 0;
+	j = 0;
+	while (mlx_s->map_cpy[i])
+	{
+		while (mlx_s->map_cpy[i][j])
+		{
+			if (mlx_s->map_cpy[i][j] == 'P')
+			{
+				mlx_s->player_y_pos = i;
+				mlx_s->player_x_pos = j;
+				return ;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	i = 0;
 }
 
-void    find_player_pos(t_mlx *mlx_s)
+void	find_player_pos(t_mlx *mlx_s)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    while (mlx_s->map[i])
-    {
-        while(mlx_s->map[i][j])
-        {
-            if (mlx_s->map[i][j] == 'P')
-            {
-                mlx_s->player_y_pos = i;
-                mlx_s->player_x_pos = j;
-                return ;
-            }
-            j++;
-        }
-        j = 0;
-        i++;
-    }
-    i = 0;
+	i = 0;
+	j = 0;
+	while (mlx_s->map[i])
+	{
+		while (mlx_s->map[i][j])
+		{
+			if (mlx_s->map[i][j] == 'P')
+			{
+				mlx_s->player_y_pos = i;
+				mlx_s->player_x_pos = j;
+				return ;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	i = 0;
 }
 
-void    find_enemie_pos(t_mlx *mlx_s)
+void	find_enemie_pos(t_mlx *mlx_s)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    j = 0;
-    while (mlx_s->map[i])
-    {
-        while(mlx_s->map[i][j])
-        {
-            if (mlx_s->map[i][j] == 'e')
-            {
-                mlx_s->enemie_y_pos = i;
-                mlx_s->enemie_x_pos = j;
-                return ;
-            }
-            j++;
-        }
-        j = 0;
-        i++;
-    }
-    i = 0;
+	i = 0;
+	j = 0;
+	while (mlx_s->map[i])
+	{
+		while (mlx_s->map[i][j])
+		{
+			if (mlx_s->map[i][j] == 'e')
+			{
+				mlx_s->enemie_y_pos = i;
+				mlx_s->enemie_x_pos = j;
+				return ;
+			}
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	i = 0;
 }
 
 //pushes a new player pos to arguments row and col (need to monitor moves)
 void	reset_player_pos(t_mlx *mlx_s, int *row, int *col)
 {
-    find_player_pos(mlx_s);
-    *row += mlx_s->player_x_pos;
-    *col += mlx_s->player_y_pos;
-    
-    // mlx_s->player_y_pos = 0;
-    // mlx_s->player_x_pos = 0;
+	find_player_pos(mlx_s);
+	*row += mlx_s->player_x_pos;
+	*col += mlx_s->player_y_pos;
 }
