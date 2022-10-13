@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:50 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/13 12:15:39 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:28:03 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int	main(int argc, char **argv)
 	make_map_size(&mlx_s, argv[1]);
 	mlx_s.map = create_matrix(argv[1]);
 	mlx_s.map_cpy = create_matrix2(argv[1]);
+	map_cpy_to_struct(&mlx_s, mlx_s.map_cpy);
     find_player_pos_cpy(&mlx_s);
-	if (has_valid_path(&mlx_s, mlx_s.map_cpy) == 1)
+	if (has_valid_path(&mlx_s) == 1)
 		exit(EXIT_FAILURE);
 	mega_map_check(argc, argv, mlx_s.map);
     mlx_s.mlx_pointer = mlx_init();

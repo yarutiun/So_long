@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:42:51 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/13 12:46:27 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:27:18 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,32 +85,32 @@ char	*ft_itoa(int nb)
 	return (s);
 }
 
-void counting_reachable(t_mlx *mlx_s, int x, int y, char **map_cpy, int *a)
+void counting_reachable(t_mlx *mlx_s, int x, int y, int *a)
 {
 	if ((y < 0 || y >= mlx_s->dlina) || (x < 0 || x >= mlx_s->shirina))
 		return;
-	if (map_cpy[y][x] == '1')
+	if (mlx_s->map_cpy[y][x] == '1')
 		return;
-	if (map_cpy[y][x] == 'C')
+	if (mlx_s->map_cpy[y][x] == 'C')
 		*a += 1;
-	if (map_cpy[y][x] == 'E')
+	if (mlx_s->map_cpy[y][x] == 'E')
 		*a += 1;
-	map_cpy[y][x] = '1';
+	mlx_s->map_cpy[y][x] = '1';
 	// printf("%i", *a);
-	counting_reachable(mlx_s, x, y - 1, map_cpy, a);
-	counting_reachable(mlx_s, x - 1, y, map_cpy, a);
-	counting_reachable(mlx_s, x + 1, y, map_cpy, a);
-	counting_reachable(mlx_s, x, y + 1, map_cpy, a);
+	counting_reachable(mlx_s, x, y - 1, a);
+	counting_reachable(mlx_s, x - 1, y, a);
+	counting_reachable(mlx_s, x + 1, y, a);
+	counting_reachable(mlx_s, x, y + 1, a);
 }
 
-int	has_valid_path(t_mlx *mlx_s, char **map_cpy)
+int	has_valid_path(t_mlx *mlx_s)
 {
 	int x = mlx_s->player_x_pos;
 	int y = mlx_s->player_y_pos;
 	int a = 0;
 	int countt;
-	countt = count(map_cpy);
-	counting_reachable(mlx_s, x, y, map_cpy, &a);
+	countt = count(mlx_s->map_cpy);
+	counting_reachable(mlx_s, x, y, &a);
 	if (countt != a)
 	{
 		write(1, "No valid path", 13);
@@ -127,6 +127,11 @@ void make_map_size(t_mlx *mlx_s, char *adress)
 	x_y_of_map(adress, &i, &j);
 	mlx_s->dlina = j;
 	mlx_s->shirina = i;
+}
+
+void map_cpy_to_struct(t_mlx *mlx_s, char **map_cpy)
+{
+	mlx_s->map_cpy = map_cpy;
 }
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
