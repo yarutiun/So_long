@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/13 20:32:13 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:36:09 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,19 @@ int	if_correct_symbols(char **map)
 
 	allowed_chars = "10EPC";
 	i = 0;
+	j = 0;
 	while (map[i])
 	{
-		j = 0;
 		while (map[i][j])
 		{
 			if (!ft_strchr(allowed_chars, map[i][j]))
-				return (0);
+				return (1);
 			j++;
 		}
 		i++;
+		j = 0;
 	}
-	return (1);
+	return (0);
 }
 
 //returns 0 if it is a ber file, 1 if not

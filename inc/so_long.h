@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/13 20:39:59 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 21:22:48 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int			if_correct_symbols(char **map);
 int			if_ber_file(char *map_path);
 void		check_collect(bool was_e, t_mlx *mlx_s);
 int			if_exit(char *map_path, char **map);
-void		mega_map_check(int argc, char **argv, char **map);
+int		mega_map_check(int argc, char **argv, char **map);
 void		game_over_loss(t_mlx *mlx_s);
 void		smth(t_mlx *mlx_s);
 void		smth2(t_mlx *mlx_s);
