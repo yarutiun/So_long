@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 13:42:51 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/12 23:27:01 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:46:27 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,4 +127,30 @@ void make_map_size(t_mlx *mlx_s, char *adress)
 	x_y_of_map(adress, &i, &j);
 	mlx_s->dlina = j;
 	mlx_s->shirina = i;
+}
+
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
+	size_t	j;
+	char	*temo;
+
+	i = 0;
+	temo = (char *)haystack;
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	while (temo[i] && i < len)
+	{
+		j = 0;
+		while (temo[i + j] == needle[j] && len - i >= ft_strlen(needle))
+		{
+			if (needle[j + 1] == '\0')
+			{
+				return (&temo[i]);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

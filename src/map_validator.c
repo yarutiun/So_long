@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/12 18:19:57 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:11:51 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void mega_map_check(int argc, char **argv, char **mlx_map)
         ft_putstr_fd("There are some missing arguments!");
         exit(EXIT_FAILURE);
     }
-    if(if_correct_symbols(argv[1], mlx_map) == 1)
+    if (if_ber_file(argv[1]) != 1)
     {
-        ft_putstr_fd("There are some incorrect characters on your map!");
+        ft_putstr_fd("Your file is not a .ber file!");
         exit(EXIT_FAILURE);
     }
-    if (if_ber_file(argv[1]) != 0)
+    if(if_correct_symbols(argv[1], mlx_map) != 0)
     {
-        write(1, "Your file is not a .ber file!", 30);
+        ft_putstr_fd("There are some incorrect characters on your map!");
         exit(EXIT_FAILURE);
     }
     if(if_collectible(mlx_map) != 1 || if_exit(argv[1], mlx_map) != 1)

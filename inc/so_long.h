@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:01:46 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/12 23:29:00 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:46:40 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void	ft_putstr_fd(char *s);
 char	*ft_itoa(int nb);
 char	*if_zero(char *s);
 int		len(long nb);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 
 //errors
 int print_error_msg(char *msg);

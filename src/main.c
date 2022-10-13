@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:17:50 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/12 23:29:54 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:15:39 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	main(int argc, char **argv)
 {
-t_mlx	mlx_s;
-	int x;
+	t_mlx	mlx_s;
+ 	int x;
 	int y;
 	x_y_of_map(argv[1], &y, &x);
 	make_map_size(&mlx_s, argv[1]);

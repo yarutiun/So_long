@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/12 23:15:49 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/13 13:11:36 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,16 @@ int if_correct_symbols(char *map_path, char **map)
 {
     t_mlx d;
     d.counter = 0;
-    d.counter2 = 0;
 
     x_y_of_map(map_path, &d.map_height, &d.map_width);
     while (map[d.counter] != map[d.map_height - 1])
     {
-        while (map[d.counter][d.counter2] != map[d.counter][d.map_width - 1])
+        d.counter2 = 0;
+        while (map[d.counter][d.counter2] != map[d.map_height - 1][d.map_width - 1])
         {
-            if (map[d.counter][d.counter2] != '1' || map[d.counter][d.counter2] != '0'
-             || map[d.counter][d.counter2] != 'C' || map[d.counter][d.counter2] != 'E'
-             || map[d.counter][d.counter2] != 'P' || map[d.counter][d.counter2] != 'e')
+            if ((map[d.counter][d.counter2] != '1') || (map[d.counter][d.counter2] != '0')
+             || (map[d.counter][d.counter2] != 'C') || (map[d.counter][d.counter2] != 'E')
+             || (map[d.counter][d.counter2] != 'P') || (map[d.counter][d.counter2] != 'e'))
              {
                 free_all_map(map);
                 return (1);
@@ -129,11 +129,10 @@ int if_ber_file(char *map_path)
 {
     int len;
     int counter;
-    
     len = ft_strlen(map_path);
     counter = (len - 4);
-    if (map_path[counter] != '.' || map_path[counter + 1] != 'b' || 
-        map_path[counter + 2] != 'e' || map_path[counter + 3] != 'r')
+    if (map_path[counter + 1] != '.' || map_path[counter + 2] != 'b' || 
+        map_path[counter + 3] != 'e' || map_path[counter + 4] != 'r')
             return(1);
     return (0);
 }
