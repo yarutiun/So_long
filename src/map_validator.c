@@ -6,38 +6,37 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 14:20:18 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/13 22:37:07 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:56:01 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 //returns 0 if fail, 1 if success
-int	mega_map_check(int argc, char **argv, char **mlx_map)
+void	mega_map_check(int argc, char **argv, char **mlx_map)
 {
 	if (argc != 2)
-		return(0);
+		exit(EXIT_FAILURE);
 	if (if_ber_file(argv[1]) != 1)
-		return(0);
-	if (!(if_correct_symbols(mlx_map)))
-	{
-		return(0);
-	}
+		exit(EXIT_FAILURE);
 	if (if_collectible(mlx_map) != 1 || if_exit(argv[1], mlx_map) != 1)
 	{
 		ft_putstr_fd("There are no collectibles or exits!");
-		return(0);
+		exit(EXIT_FAILURE);
 	}
 	if (if_one_player(argv[1], mlx_map) != 1)
 	{
 		ft_putstr_fd("There is not only 1 player");
-		return(0);
+		exit(EXIT_FAILURE);
 	}
-	if (if_rectangle(argv[1], mlx_map) == 1)
+	if (if_correct_symbols(mlx_map))
+	{
+		exit(EXIT_FAILURE);
+	}
+	if (!(if_rectangle(argv[1], mlx_map)))
 	{
 		ft_putstr_fd("not a rectangle");
-		return(0);
+		exit(EXIT_FAILURE);
 	}
-	return(1);
 }
 
 void	x_y_of_map(char *map_adress, int *map_height, int *map_width)
@@ -85,7 +84,7 @@ char	**create_matrix(char *map_path)
 			free(map.map[map.counter]);
 			exit(EXIT_FAILURE);
 		}
-			read(map.fd, map.map[map.counter], map.map_width + 1);
+		read(map.fd, map.map[map.counter], map.map_width + 1);
 		map.map[map.counter][map.map_width] = '\0';
 		map.counter++;
 	}

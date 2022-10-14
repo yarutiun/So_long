@@ -6,7 +6,7 @@
 /*   By: yarutiun <yarutiun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 13:49:08 by yarutiun          #+#    #+#             */
-/*   Updated: 2022/10/13 22:36:09 by yarutiun         ###   ########.fr       */
+/*   Updated: 2022/10/14 16:58:47 by yarutiun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,27 @@
 //return 0 if success, 1 if not
 int	if_rectangle(char *map_path, char **map)
 {
-	int		i;
-	t_mlx	d;
+	int	i;
+	int	j;
+	int	row;
+	int	col;
 
+	x_y_of_map(map_path, &col, &row);
+	row--;
+	col--;
 	i = 0;
-	d.counter = 0;
-	x_y_of_map(map_path, &d.map_height, &d.map_width);
-	while (i < d.map_width)
+	while (map[i])
 	{
-		if (map[0][i] != '1' || map[d.map_height - 1][i] != '1')
+		j = 0;
+		while (map[i][j])
 		{
-			free_all_map(map);
-			return (1);
+			if (map[i][j] != '1' && (i == 0 || i == col || j == 0 || j == row))
+				return (0);
+			j++;
 		}
 		i++;
 	}
-	while (d.counter < d.map_height)
-	{
-		if (map[d.counter][0] != '1' || map[d.counter][d.map_width - 1] != '1')
-		{
-			free_all_map(map);
-			return (1);
-		}
-	d.counter ++;
-	}
-	return (0);
+	return (1);
 }
 
 //return 0 if success, 1 if not
@@ -46,17 +42,23 @@ int	if_one_player(char *map_path, char **map)
 {
 	t_mlx	d;
 	int		i;
+	int		player;
 
+	player = 0;
 	i = 0;
 	x_y_of_map(map_path, &d.map_height, &d.map_width);
 	while (map[i] != map[d.map_height])
 	{
 		if (ft_strchr(map[i], 'P') != 0)
 		{
-			return (1);
+			player++;
+			if(player > 1)
+				return (0);
 		}
 		i++;
 	}
+	if(player == 1)
+		return (1);
 	free_all_map(map);
 	return (0);
 }
@@ -90,13 +92,14 @@ int	if_correct_symbols(char **map)
 	int		j;
 	char	*allowed_chars;
 
-	allowed_chars = "10EPC";
+	allowed_chars = "10EPCe";
 	i = 0;
 	j = 0;
 	while (map[i])
 	{
 		while (map[i][j])
 		{
+			// fprintf(stderr, "i is %d, j is %d\n", i, j);
 			if (!ft_strchr(allowed_chars, map[i][j]))
 				return (1);
 			j++;
