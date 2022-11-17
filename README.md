@@ -1,5 +1,7 @@
 # So_long
-Small 2d game
+Small 2d "doom-like" game using mlx library developed by 42 school
+
+
 
 #How to launch?
 1 - Type Make for compiling all the files related to game
